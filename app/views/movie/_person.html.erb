@@ -1,0 +1,39 @@
+<% unless @sss.nil? %>
+	<% @sss.each do |psn| %>
+	    <div class="col-md-5 no-padding lib-item" data-category="view">
+	        <div class="lib-panel">
+	            <div class="row box-shadow">
+
+	                <% person = Tmdb::Person.detail(psn["id"]) %>
+
+	                <div class="col-md-6">
+	                    <% if psn["profile_path"].nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{psn['profile_path']}" %>
+						<% end %>
+	                </div>
+
+
+	                <div class="col-md-6">
+	                    <div class="lib-row lib-header">
+	                        <%= person.name %>
+	                        <div class="lib-header-seperator"></div>
+	                    </div>
+	                    <div class="lib-row lib-desc">
+		                    <p>Place : <%= person.place_of_birth %></p>
+		                    <p>Known As : <%= person.also_known_as %></p>
+		                    <p>Biography : <%= person.biography %></p>
+		                    <p>Birthday : <%= person.birthday %></p>
+		                    <p>Homepage : <%= person.homepage %></p>
+		                    <p>Popularity : <%= psn["popularity"] %></p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-md-1"></div>
+	<% end %>
+<% end %>
+
+

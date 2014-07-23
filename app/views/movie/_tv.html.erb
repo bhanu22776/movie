@@ -1,0 +1,42 @@
+<% unless @sss.nil? %>
+	<% @sss.each do |tv| %>
+	    <div class="col-md-5 no-padding lib-item" data-category="view">
+	        <div class="lib-panel">
+	            <div class="row box-shadow">
+
+	                <% teav = Tmdb::TV.detail(tv["id"]) %>
+
+	                <div class="col-md-6">
+	                    <% if tv["poster_path"].nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{tv['poster_path']}" %>
+						<% end %>
+						<% if tv["backdrop_path"].nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{tv['backdrop_path']}" %>
+						<% end %>
+	                </div>
+
+
+	                <div class="col-md-6">
+	                    <div class="lib-row lib-header">
+	                        <%= teav.name %>
+	                        <div class="lib-header-seperator"></div>
+	                    </div>
+	                    <div class="lib-row lib-desc">
+		                    <p><%= teav.origin_country %></p>
+		                    <p><%= teav.overview %></p>
+		                    <p><%= teav.status %></p>
+		                    <p><%= teav.vote_average %></p>
+		                    <p><%= teav.vote_count %></p>
+		                    <p>Popularity : <%= tv["popularity"] %></p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-md-1"></div>
+	<% end %>
+<% end %>

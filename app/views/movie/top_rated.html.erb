@@ -1,0 +1,51 @@
+<% @top_rated.each do |movie| %>
+	
+
+	<div class="col-md-5 no-padding lib-item" data-category="view">
+        <div class="lib-panel">
+            <div class="row box-shadow">
+                <div class="col-md-6">
+                    <% detail = Tmdb::Movie.detail(movie['id']) %>
+                    <% if movie['poster_path'].nil? %>
+						<img src="http://www.swapen.com/images/main/no-image_big.png">
+					<% else %>
+						<%= image_tag "http://image.tmdb.org/t/p/w154#{movie['poster_path']}" %>
+					<% end %>
+					<% if movie['backdrop_path'].nil? %>
+						<img src="http://www.swapen.com/images/main/no-image_big.png">
+					<% else %>
+						<%= image_tag "http://image.tmdb.org/t/p/w154#{movie['backdrop_path']}" %>
+					<% end %>
+                </div>
+                <div class="col-md-6">
+                    <div class="lib-row lib-header">
+                        <%= detail.title %>
+                        <div class="lib-header-seperator"></div>
+                    </div>
+                    <div class="lib-row lib-desc">
+
+					<p><%= detail.tagline %></p>
+					<p><%= detail.overview %></p>
+					<p><%= detail.popularity %></p>
+					<p><%= detail.status %></p>
+					<p><%= detail.vote_average %></p>
+					<p><%= detail.vote_count %></p>
+
+					<!-- 
+
+					<p><%= detail.budget %></p>
+					<p><%= detail.id %></p>
+					<p><%= detail.imdb_id %></p>
+					<p><%= detail.original_title %></p>
+					<p><%= detail.release_date %></p>
+
+					-->            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    
+<% end %>

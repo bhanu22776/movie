@@ -1,0 +1,11 @@
+<% if params[:resource] == "person" %>
+	<%= render "person" %>
+<% elsif params[:resource] == "movie" %>
+	<%= render "movie" %>
+<% elsif params[:resource] == "tv" %>
+	<%= render "tv" %>
+<% elsif params[:resource] == "collection" %>
+	<%= render "collection" %>
+<% elsif params[:resource] == "company" %>
+	<%= render "company" %>
+<% end %>

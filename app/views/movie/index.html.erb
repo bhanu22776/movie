@@ -1,0 +1,80 @@
+<div class="container" align="center">
+	<form class="form-inline" action="/movie/index" method="post">
+		<div class="form-group">
+			<input type="text" name="name" class="form-control">			
+		</div>
+		<div class="form-group">
+			<input type="submit" value="Submit" class="form-control btn btn-info">
+		</div>
+	</form>
+</div>
+<br>
+
+
+<% unless @i.nil? %>
+	<% @i.each do |movie| %>
+        <div class="col-md-5 no-padding lib-item" data-category="view">
+            <div class="lib-panel">
+                <div class="row box-shadow">
+                    <div class="col-md-6">
+                        <% detail = Tmdb::Movie.detail(movie.id) %>
+                        <% if movie.poster_path.nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{movie.poster_path}" %>
+						<% end %>
+						<% if movie.backdrop_path.nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{movie.backdrop_path}" %>
+						<% end %>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="lib-row lib-header">
+                            <%= detail.title %>
+                            <div class="lib-header-seperator"></div>
+                        </div>
+                        <div class="lib-row lib-desc">
+
+						<p><%= detail.tagline %></p>
+						<p><%= detail.overview %></p>
+						<p><%= detail.popularity %></p>
+						<p><%= detail.status %></p>
+						<p><%= detail.vote_average %></p>
+						<p><%= detail.vote_count %></p>
+
+						<!-- 
+
+						<p><%= detail.budget %></p>
+						<p><%= detail.id %></p>
+						<p><%= detail.imdb_id %></p>
+						<p><%= detail.original_title %></p>
+						<p><%= detail.release_date %></p>
+
+						-->            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+	<% end %>
+<% else %>
+	<% @popular.each do |popular| %>
+		<div class="col-md-2 col-xs-6">
+ 			<% if popular['poster_path'].nil? %>
+				<img src="http://www.swapen.com/images/main/no-image_big.png">
+			<% else %>
+				<%= image_tag "http://image.tmdb.org/t/p/w154#{popular['poster_path']}", :class => "thumbnail" %>
+			<% end %>
+		</div>
+<!-- 
+		<% if popular['backdrop_path'].nil? %>
+			<img src="http://www.swapen.com/images/main/no-image_big.png">
+		<% else %>
+			<%= image_tag "http://image.tmdb.org/t/p/w154#{popular['backdrop_path']}" %>
+		<% end %>
+		 -->
+	<% end %>
+<% end %>

@@ -1,0 +1,43 @@
+<% unless @sss.nil? %>
+	<% @sss.each do |com| %>
+	    <div class="col-md-5 no-padding lib-item" data-category="view">
+	        <div class="lib-panel">
+	            <div class="row box-shadow">
+
+	                <% company = Tmdb::Company.detail(com["id"]) %>
+
+	                <div class="col-md-6">
+	                    <% if company.logo_path.nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{company.logo_path}" %>
+						<% end %>
+	                </div>
+
+
+	                <div class="col-md-6">
+	                    <div class="lib-row lib-header">
+	                        <%= company.name %>
+	                        <div class="lib-header-seperator"></div>
+	                    </div>
+	                    <div class="lib-row lib-desc">
+	                    	<p>Description : <%= company.description %></p>
+	                    	<p>
+	                    	Company : 
+	                    	<% unless company.parent_company.nil? %>
+	                    		
+	                    	<%= company.parent_company["name"] %>
+	                    				<%= image_tag "http://image.tmdb.org/t/p/w154#{company.parent_company["logo_path"]}" %>
+	                    	<% end %>
+	                    	</p>
+	                    	<p>Home Page : <%= company.homepage %></p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-md-1"></div>
+	<% end %>
+<% end %>
+
+

@@ -1,0 +1,54 @@
+<% unless @sss.nil? %>
+	<% @sss.each do |col| %>
+	    <div class="col-md-5 no-padding lib-item" data-category="view">
+	        <div class="lib-panel">
+	            <div class="row box-shadow">
+
+	                <% collection = Tmdb::Collection.detail(col["id"]) %>
+
+	                <div class="col-md-6">
+	                    <% if col["poster_path"].nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{col['poster_path']}" %>
+						<% end %>
+						<% if col["backdrop_path"].nil? %>
+							<img src="http://www.swapen.com/images/main/no-image_big.png">
+						<% else %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{col['backdrop_path']}" %>
+						<% end %>
+	                </div>
+
+
+	                <div class="col-md-6">
+	                    <div class="lib-row lib-header">
+	                        <%= collection.name %>
+	                        <div class="lib-header-seperator"></div>
+	                    </div>
+	                    <div class="lib-row lib-desc">
+	                    	<% parts = collection.parts %>
+	                    	<% parts.each do |part| %>
+	                    		<p><%= part["title"] %></p>
+	                    		<p><%= part["id"] %></p>
+	                    		<% if part["poster_path"].nil? %>
+									<img src="http://www.swapen.com/images/main/no-image_big.png">
+								<% else %>
+									<%= image_tag "http://image.tmdb.org/t/p/w154#{part["poster_path"]}" %>
+								<% end %>
+								<% if part["backdrop_path"].nil? %>
+									<img src="http://www.swapen.com/images/main/no-image_big.png">
+								<% else %>
+									<%= image_tag "http://image.tmdb.org/t/p/w154#{part["backdrop_path"]}" %>
+								<% end %>
+	                    		<p><%= part["release_date"] %></p>
+	                    	<% end %>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-md-1"></div>
+	<% end %>
+<% end %>
+
+

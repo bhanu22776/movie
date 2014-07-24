@@ -6,14 +6,14 @@
 	                <div class="col-md-6">
 	                    <% detail = Tmdb::Movie.detail(movie["id"]) %>
 	                    <% if movie["poster_path"].nil? %>
-							<img src="http://www.swapen.com/images/main/no-image_big.png">
+							<img src="http://www.swapen.com/images/main/no-image_big.png" width="238px" height="341px" >
 						<% else %>
-							<%= image_tag "http://image.tmdb.org/t/p/w154#{movie['poster_path']}" %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{movie['poster_path']}", :width => "238px", :height => "341px" %>
 						<% end %>
 						<% if movie["backdrop_path"].nil? %>
-							<img src="http://www.swapen.com/images/main/no-image_big.png">
+							<img src="http://www.swapen.com/images/main/no-image_big.png" width="238px" height="134px" >
 						<% else %>
-							<%= image_tag "http://image.tmdb.org/t/p/w154#{movie['backdrop_path']}" %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{movie['backdrop_path']}", :width => "238px", :height => "134px" %>
 						<% end %>
 	                </div>
 	                <div class="col-md-6">
@@ -24,7 +24,7 @@
 	                    <div class="lib-row lib-desc">
 
 						<p><%= detail.tagline %></p>
-						<p><%= detail.overview %></p>
+						<p class="readmore"><%= detail.overview %></p>
 						<p><%= detail.popularity %></p>
 						<p><%= detail.status %></p>
 						<p><%= detail.vote_average %></p>

@@ -8,14 +8,14 @@
 
 	                <div class="col-md-6">
 	                    <% if tv["poster_path"].nil? %>
-							<img src="http://www.swapen.com/images/main/no-image_big.png">
+							<img src="http://www.swapen.com/images/main/no-image_big.png" width="238px" height="341px" >
 						<% else %>
-							<%= image_tag "http://image.tmdb.org/t/p/w154#{tv['poster_path']}" %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{tv['poster_path']}", :width => "238px", :height => "341px" %>
 						<% end %>
 						<% if tv["backdrop_path"].nil? %>
-							<img src="http://www.swapen.com/images/main/no-image_big.png">
+							<img src="http://www.swapen.com/images/main/no-image_big.png" width="238px" height="134px" >
 						<% else %>
-							<%= image_tag "http://image.tmdb.org/t/p/w154#{tv['backdrop_path']}" %>
+							<%= image_tag "http://image.tmdb.org/t/p/w154#{tv['backdrop_path']}", :width => "238px", :height => "134px" %>
 						<% end %>
 	                </div>
 
@@ -27,7 +27,7 @@
 	                    </div>
 	                    <div class="lib-row lib-desc">
 		                    <p><%= teav.origin_country %></p>
-		                    <p><%= teav.overview %></p>
+		                    <p class="readmore"><%= teav.overview %></p>
 		                    <p><%= teav.status %></p>
 		                    <p><%= teav.vote_average %></p>
 		                    <p><%= teav.vote_count %></p>

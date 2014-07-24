@@ -17,6 +17,25 @@
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
 	
     <%= javascript_include_tag "application" %>
+    <script type="text/javascript"
+    src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.4.min.js">
+    </script>
+    <script type="text/javascript"
+    src="http://plugins.learningjquery.com/expander/jquery.expander.js">
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('p.readmore').expander({
+                slicePoint: 300,
+                expandText: 'Click Here to Read More',
+                userCollapseText: 'Hide Text',
+                expandEffect: 'slideDown',
+                collapseEffect: 'slideUp',
+                expandPrefix:     ' ', // default is '... '
+                collapseTimer:    5000, // re-collapses after 5 seconds; default is 0, so no re-collapsing
+            });
+        });
+    </script>
   </head>
   <body>
     <div class="navbar navbar-default navbar-static-top navbar-fixed-top">
@@ -63,9 +82,13 @@
         </div>
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
+      <div class="space"></div>
+      
+      <div class="footer navbar-fixed-bottom">
+        <div class="container">
+          <p>&copy; Company 2014</p>
+        </div>
+      </div>
 
     </div> <!-- /container -->
 
@@ -73,6 +96,25 @@
 </html>
 
 <style type="text/css">
+
+  .footer {
+    padding: 5px;
+    background-color: #E74C3C;
+  }
+
+  .space{
+    height: 2em;
+  }
+
+  @media (min-width: 767px) {
+    .space{
+      height: 3em;
+    }
+  }
+
+  .read-more a, .read-less a{
+    position: relative;
+  }
   /* Red * /
   $bgDefault      : #e74c3c;
   $bgHighlight    : #c0392b;

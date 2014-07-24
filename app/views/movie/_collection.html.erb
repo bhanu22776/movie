@@ -1,12 +1,12 @@
 <% unless @sss.nil? %>
 	<% @sss.each do |col| %>
-	    <div class="col-md-5 no-padding lib-item" data-category="view">
+	    <div class="col-md-12 no-padding lib-item" data-category="view">
 	        <div class="lib-panel">
 	            <div class="row box-shadow">
 
 	                <% collection = Tmdb::Collection.detail(col["id"]) %>
 
-	                <div class="col-md-6">
+	                <div class="col-md-3">
 	                    <% if col["poster_path"].nil? %>
 							<img src="http://www.swapen.com/images/main/no-image_big.png">
 						<% else %>
@@ -20,7 +20,7 @@
 	                </div>
 
 
-	                <div class="col-md-6">
+	                <div class="col-md-9">
 	                    <div class="lib-row lib-header">
 	                        <%= collection.name %>
 	                        <div class="lib-header-seperator"></div>
@@ -28,26 +28,29 @@
 	                    <div class="lib-row lib-desc">
 	                    	<% parts = collection.parts %>
 	                    	<% parts.each do |part| %>
-	                    		<p><%= part["title"] %></p>
-	                    		<p><%= part["id"] %></p>
-	                    		<% if part["poster_path"].nil? %>
-									<img src="http://www.swapen.com/images/main/no-image_big.png">
-								<% else %>
-									<%= image_tag "http://image.tmdb.org/t/p/w154#{part["poster_path"]}" %>
-								<% end %>
-								<% if part["backdrop_path"].nil? %>
-									<img src="http://www.swapen.com/images/main/no-image_big.png">
-								<% else %>
-									<%= image_tag "http://image.tmdb.org/t/p/w154#{part["backdrop_path"]}" %>
-								<% end %>
-	                    		<p><%= part["release_date"] %></p>
+	                    		<% unless part["release_date"] == "" %>
+		                    		<div class="col-md-4">
+			                    		<p><%= part["title"] %></p>
+			                    		<!-- <p><%= part["id"] %></p> -->
+			                    		<% if part["poster_path"].nil? %>
+											<img src="http://www.swapen.com/images/main/no-image_big.png" width=" 232px" height="348px">
+										<% else %>
+											<%= image_tag "http://image.tmdb.org/t/p/w154#{part["poster_path"]}" %>
+										<% end %>
+										<% if part["backdrop_path"].nil? %>
+											<img src="http://www.swapen.com/images/main/no-image_big.png"  width=" 232px" height="131px" >
+										<% else %>
+											<%= image_tag "http://image.tmdb.org/t/p/w154#{part["backdrop_path"]}" %>
+										<% end %>
+			                    		<!-- <p><%= part["release_date"] %></p> -->
+			                    	</div>
+			                    <% end %>
 	                    	<% end %>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
-	    <div class="col-md-1"></div>
 	<% end %>
 <% end %>
 
